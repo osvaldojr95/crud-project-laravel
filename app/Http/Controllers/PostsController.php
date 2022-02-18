@@ -39,8 +39,11 @@ class PostsController extends Controller
         return redirect()->route('posts.index');
     }
 
-    public function destroy() {
-        dd("NaN");
+    public function destroy($id) {
+        if($data = Post::find($id)){
+            $data->delete();
+        }
+        return redirect()->route('posts.index');
     }
 
     public function edit($id) {

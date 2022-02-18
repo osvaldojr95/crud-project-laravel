@@ -9,7 +9,8 @@
                     <div class="panel-title">
                         Lista de posts:
                         <ul class="panel-tools">
-                            <li><a class="btn btn-xs btn-info" href="{{route('posts.create')}}"><i class="fa fa-plus"></i>Novo</a></li>
+                            <li><a class="btn btn-xs btn-info" href="{{route('posts.create')}}"><i
+                                            class="fa fa-plus"></i>Novo</a></li>
                         </ul>
                     </div>
                     <table class="table table-hover">
@@ -21,13 +22,19 @@
                         </thead>
                         <tbody>
                         @foreach($data as $post)
+                            {{Form::model($data, array('route' => ['posts.destroy', $post->id], 'method' => 'DELETE'))}}
+                                {{Form::submit('enviar',['id'=>"formDelete-$post->id", 'style' => 'display:none;'])}}
+                            {{Form::close()}}
                             <tr>
                                 <td><b>{{$post->id}}</b></td>
                                 <td>{{$post->name}}</td>
                                 <td>
-                                    <a class="btn btn-xs btn-group" href="{{route('posts.show',[$post->id])}}"><i class="fa fa-paper"></i>Show</a>
-                                    <a class="btn btn-xs btn-primary" href="{{route('posts.edit',[$post->id])}}"><i class="fa fa-edit"></i>Edit</a>
-                                    <a class="btn btn-xs btn-danger" href="#"><i class="fa fa-trash"></i>Delete</a>
+                                    <a class="btn btn-xs btn-group" href="{{route('posts.show',[$post->id])}}"><i
+                                                class="fa fa-paper"></i>Show</a>
+                                    <a class="btn btn-xs btn-primary" href="{{route('posts.edit',[$post->id])}}"><i
+                                                class="fa fa-edit"></i>Edit</a>
+                                    <a class="btn btn-xs btn-danger" onclick="deletarPost({{$post->id}})" href="#"><i
+                                                class="fa fa-trash"></i>Delete</a>
                                 </td>
                             </tr>
                         @endforeach
@@ -50,4 +57,13 @@
     </div>
 
 
+@endsection
+
+
+@section('script')
+    <script>
+        function deletarPost(id) {
+            document.querySelector("#formDelete-" + id).click();
+        }
+    </script>
 @endsection

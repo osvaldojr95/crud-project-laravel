@@ -10,7 +10,8 @@ class Post extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = [
-        'name'
+        'name',
+        'conteudo'
     ];
 
     protected $guarded = [

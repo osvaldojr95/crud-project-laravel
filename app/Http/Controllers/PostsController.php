@@ -13,6 +13,9 @@ class PostsController extends Controller
     }
 
     public function store(Request $request) {
+        $validate = $this->makeRules($request);
+        $this->validate($request,$validate['rulesUpdate'],$validate['messages']);
+
         if($data = Post::create($request->all())){
             return view('posts.show',compact("data"));
         }
@@ -31,7 +34,11 @@ class PostsController extends Controller
     }
 
     public function update(Request $request, $id) {
+
         if($data = Post::find($id)){
+            $validate = $this->makeRules($request,$data);
+            $this->validate($request,$validate['rulesUpdate'],$validate['messages']);
+
             if($data->update($request->all())){
                 return view('posts.show',compact("data"));
             }
@@ -51,5 +58,30 @@ class PostsController extends Controller
             return view('posts.edit',compact("data"));
         }
         return redirect()->route('posts.index');
+    }
+
+    private function makeRules(Request $request, $data = null)
+    {
+        $messages = [
+            'name.required' => 'Por favor, informe o nome.',
+            'name.min' => 'Nome inválido, mínimo 03 caracteres.',
+            'name.max' => 'Nome inválido, máximo 255 caracteres.',
+
+            'conteudo.required' => 'Por favor, informe o nome.',
+            'conteudo.min' => 'Nome inválido, mínimo 03 caracteres.',
+            'conteudo.max' => 'Nome inválido, máximo 255 caracteres.',
+        ];
+
+        $rules = [
+            'conteudo' => 'required|min:3|max:255',
+        ];
+
+        $rulesUpdate = $rules;
+
+        return [
+            'messages' => $messages,
+            'rules' => $rules,
+            'rulesUpdate' => $rulesUpdate
+        ];
     }
 }

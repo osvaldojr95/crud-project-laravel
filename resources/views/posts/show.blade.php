@@ -19,6 +19,11 @@
                     <h4>Name</h4>
                     <div class="desc">{{$data->name}}</div>
                 </div>
+
+                <div class="list">
+                    <h4>Conteúdo</h4>
+                    <div class="desc">{{$data->conteudo}}</div>
+                </div>
             </div>
         </div>
     </div>

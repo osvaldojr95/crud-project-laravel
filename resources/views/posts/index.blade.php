@@ -13,37 +13,16 @@
                                             class="fa fa-plus"></i>Novo</a></li>
                         </ul>
                     </div>
-                    <table class="table table-hover">
+                    <table class="table table-hover" id="tablePost">
                         <thead>
                         <tr>
-                            <td>ID</td>
-                            <td>Name</td>
+                            <th>ID</th>
+                            <th>Name</th>
                         </tr>
                         </thead>
-                        <tbody>
-                        @foreach($data as $post)
-                            {{Form::model($data, array('route' => ['posts.destroy', $post->id], 'method' => 'DELETE'))}}
-                                {{Form::submit('enviar',['id'=>"formDelete-$post->id", 'style' => 'display:none;'])}}
-                            {{Form::close()}}
-                            <tr>
-                                <td><b>{{$post->id}}</b></td>
-                                <td>{{$post->name}}</td>
-                                <td>
-                                    <a class="btn btn-xs btn-group" href="{{route('posts.show',[$post->id])}}"><i
-                                                class="fa fa-paper"></i>Show</a>
-                                    <a class="btn btn-xs btn-primary" href="{{route('posts.edit',[$post->id])}}"><i
-                                                class="fa fa-edit"></i>Edit</a>
-                                    <a class="btn btn-xs btn-danger" onclick="deletarPost({{$post->id}})" href="#"><i
-                                                class="fa fa-trash"></i>Delete</a>
-                                </td>
-                            </tr>
-                        @endforeach
-                        </tbody>
                     </table>
-
                 </div>
             </div>
-
         </div>
     </div>
     <div class="row footer">
@@ -55,15 +34,46 @@
             Design and Developed by <a href="http://themeforest.net/user/egemem/portfolio" target="_blank">Egemem</a>
         </div>
     </div>
-
-
 @endsection
 
 
 @section('script')
-    <script>
-        function deletarPost(id) {
-            document.querySelector("#formDelete-" + id).click();
+    <script type="text/javascript">
+        var urlBannersDefault = '{{ url('ajax/posts') }}';
+        var tableBanners;
+
+        function refreshTableBanners() {
+            tableBanners.ajax.url(urlBannersDefault);
+            tableBanners.draw();
         }
+
+        $(document).ready(function () {
+            tableBanners = $('#tablePost').DataTable({
+                language: {
+                    url: 'https://cdn.datatables.net/plug-ins/1.10.13/i18n/Portuguese-Brasil.json'
+                },
+                searchDelay: 2500,
+                processing: true,
+                serverSide: true,
+                autoWidth: false,
+                paging: true,
+                order: [0, 'desc'],
+                ajax: {
+                    url: urlBannersDefault,
+                    type: 'GET'
+                },
+                fixedColumns: true,
+                columns: [
+                    {
+                        data: 'id',
+                        width: '40px',
+                        className: "text-right"
+                    },
+                    {
+                        data: 'name'
+                    }
+                ]
+            });
+        });
     </script>
 @endsection

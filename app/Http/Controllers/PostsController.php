@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PostsController extends Controller
 {
     public function index() {
         $data = Post::all();
+        //$data = DB::select('select * from posts',[5]);
         return view('posts.index',compact("data"));
     }
 
@@ -28,6 +30,7 @@ class PostsController extends Controller
 
     public function show($id) {
         if($data = Post::find($id)){
+        //if($data = DB::select('select * from posts where id=:id',['id' => $id])){
             return view('posts.show',compact('data'));
         }
         return redirect()->route('posts.index');

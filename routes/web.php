@@ -16,3 +16,5 @@ use App\Http\Controllers\PhotoController;
 Route::get('/', ['uses' => 'PostsController@index', 'as' => 'index']);
 
 Route::resource('/posts',PostsController::class);
+
+Route::get('ajax/{src}',['uses' => 'AjaxController@get']);

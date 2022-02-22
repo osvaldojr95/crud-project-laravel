@@ -12,7 +12,7 @@
         <li>
             <a href="{{route('tipospost.index')}}">
                 <span class="icon color5">
-                    <i class="fa fa-arrow-right"></i>
+                    <i class="fa fa-bars"></i>
                 </span>
                 Tipos de Post
             </a>

@@ -49,7 +49,6 @@ class PostsController extends Controller
     }
 
     public function destroy($id) {
-        console.log("Teste");
         if($data = Post::find($id)){
             $data->delete();
         }

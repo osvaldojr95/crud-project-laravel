@@ -18,6 +18,7 @@
                         <tr>
                             <th>ID</th>
                             <th>Name</th>
+                            <th>Ação</th>
                         </tr>
                         </thead>
                     </table>
@@ -71,6 +72,9 @@
                     },
                     {
                         data: 'name'
+                    },
+                    {
+                        data: 'action'
                     }
                 ]
             });

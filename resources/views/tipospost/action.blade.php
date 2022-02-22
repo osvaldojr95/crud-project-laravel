@@ -1,6 +1,6 @@
-<a class="btn btn-xs btn-info" href="{{route('tipospost.show', $id)}}"><i class="fa fa-plus"></i>Show</a>
-<a class="btn btn-xs btn-info" href="{{route('tipospost.edit', $id)}}"><i class="fa fa-plus"></i>Edit</a>
-<a id="{{"botaoDeletar-".$id}}" class="btn btn-xs btn-info"><i class="fa fa-plus"></i>Delete</a>
+<a class="btn btn-xs btn-success" href="{{route('tipospost.show', $id)}}"><i class="fa fa-file-text"></i>Show</a>
+<a class="btn btn-xs btn-primary" href="{{route('tipospost.edit', $id)}}"><i class="fa fa-edit"></i>Edit</a>
+<a id="{{"botaoDeletar-".$id}}" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i>Delete</a>
 
 {{Form::open(array('route' => ['tipospost.destroy',$id],'id' => 'formDelete-'.$id, 'style' => 'display: none;','method' => 'DELETE'))}}
 {{Form::submit()}}

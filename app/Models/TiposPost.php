@@ -18,4 +18,9 @@ class TiposPost extends Model
         'created_at',
         'update_at'
     ];
+
+    public function tiposPost()
+    {
+        return $this->belongsTo('app\Models\Post', 'id_tipospost', 'id');
+    }
 }

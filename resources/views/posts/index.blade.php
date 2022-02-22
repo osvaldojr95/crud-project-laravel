@@ -18,6 +18,7 @@
                         <tr>
                             <th>ID</th>
                             <th>Name</th>
+                            <th>Tipo</th>
                             <th>Ação</th>
                         </tr>
                         </thead>
@@ -72,6 +73,9 @@
                     },
                     {
                         data: 'name'
+                    },
+                    {
+                        data: 'tipospost_name'
                     },
                     {
                         data: 'action'

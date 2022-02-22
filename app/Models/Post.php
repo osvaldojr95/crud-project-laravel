@@ -16,7 +16,13 @@ class Post extends Model
 
     protected $guarded = [
         'id',
+        'id_tipospost',
         'created_at',
         'update_at'
     ];
+
+    public function tiposPost()
+    {
+        return $this->hasOne('app\Models\TiposPost', 'id_tipospost', 'id');
+    }
 }

@@ -9,7 +9,7 @@
                     <div class="panel-title">
                         Lista de posts:
                         <ul class="panel-tools">
-                            <li><a class="btn btn-xs btn-info" href="{{route('tipospost.create')}}"><i
+                            <li><a class="btn btn-sm btn-info" href="{{route('tipospost.create')}}"><i
                                             class="fa fa-plus"></i>Novo</a></li>
                         </ul>
                     </div>

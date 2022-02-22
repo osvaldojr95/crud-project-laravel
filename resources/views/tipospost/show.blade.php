@@ -6,7 +6,7 @@
         <div class="changelogs">
             <div class="update">
                 <span class="label label-default version">Post</span>
-                <a class="date btn btn-xs btn-primary" href="{{route('tipospost.index')}}"><i class="fa fa-edit"></i>Volar</a>
+                <a class="date btn btn-sm btn-primary" href="{{route('tipospost.index')}}"><i class="fa fa-edit"></i>Volar</a>
                 <span class="dot"></span>
                 <span class="line"></span>
 

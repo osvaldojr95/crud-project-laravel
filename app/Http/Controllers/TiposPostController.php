@@ -2,65 +2,63 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Post;
+use App\Models\TiposPost;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
-class PostsController extends Controller
+class TiposPostController extends Controller
 {
+
     public function index() {
-        $data = Post::all();
-        return view('posts.index',compact("data"));
+        $data = TiposPost::all();
+        return view('tipospost.index',compact("data"));
     }
 
     public function store(Request $request) {
         $validate = $this->makeRules($request);
         $this->validate($request,$validate['rulesUpdate'],$validate['messages']);
 
-        if($data = Post::create($request->all())){
-            return view('posts.show',compact("data"));
+        if($data = TiposPost::create($request->all())){
+            return view('tipospost.show',compact("data"));
         }
-        return redirect()->route('posts.index');
+        return redirect()->route('tipospost.index');
     }
 
     public function create() {
-        return view('posts.create');
+        return view('tipospost.create');
     }
 
     public function show($id) {
-        if($data = Post::find($id)){
-        //if($data = DB::select('select * from posts where id=:id',['id' => $id])){
-            return view('posts.show',compact('data'));
+        if($data = TiposPost::find($id)){
+            return view('tipospost.show',compact('data'));
         }
-        return redirect()->route('posts.index');
+        return redirect()->route('tipospost.index');
     }
 
     public function update(Request $request, $id) {
 
-        if($data = Post::find($id)){
+        if($data = TiposPost::find($id)){
             $validate = $this->makeRules($request,$data);
             $this->validate($request,$validate['rulesUpdate'],$validate['messages']);
 
             if($data->update($request->all())){
-                return view('posts.show',compact("data"));
+                return view('tipospost.show',compact("data"));
             }
         }
-        return redirect()->route('posts.index');
+        return redirect()->route('tipospost.index');
     }
 
     public function destroy($id) {
-        console.log("Teste");
-        if($data = Post::find($id)){
+        if($data = TiposPost::find($id)){
             $data->delete();
         }
-        return redirect()->route('posts.index');
+        return redirect()->route('tipospost.index');
     }
 
     public function edit($id) {
-        if($data = Post::find($id)){
-            return view('posts.edit',compact("data"));
+        if($data = TiposPost::find($id)){
+            return view('tipospost.edit',compact("data"));
         }
-        return redirect()->route('posts.index');
+        return redirect()->route('tipospost.index');
     }
 
     private function makeRules(Request $request, $data = null)
@@ -69,14 +67,10 @@ class PostsController extends Controller
             'name.required' => 'Por favor, informe o nome.',
             'name.min' => 'Nome inválido, mínimo 03 caracteres.',
             'name.max' => 'Nome inválido, máximo 255 caracteres.',
-
-            'conteudo.required' => 'Por favor, informe o nome.',
-            'conteudo.min' => 'Nome inválido, mínimo 03 caracteres.',
-            'conteudo.max' => 'Nome inválido, máximo 255 caracteres.',
         ];
 
         $rules = [
-            'conteudo' => 'required|min:3|max:255',
+            'name' => 'required|min:3|max:255',
         ];
 
         $rulesUpdate = $rules;

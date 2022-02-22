@@ -9,7 +9,7 @@
                     <div class="panel-title">
                         Lista de posts:
                         <ul class="panel-tools">
-                            <li><a class="btn btn-xs btn-info" href="{{route('posts.create')}}"><i
+                            <li><a class="btn btn-xs btn-info" href="{{route('tipospost.create')}}"><i
                                             class="fa fa-plus"></i>Novo</a></li>
                         </ul>
                     </div>
@@ -18,6 +18,8 @@
                         <tr>
                             <th>ID</th>
                             <th>Name</th>
+                            <th>Data de criação</th>
+                            <th>Ações</th>
                         </tr>
                         </thead>
                     </table>
@@ -39,16 +41,16 @@
 
 @section('script')
     <script type="text/javascript">
-        var urlPostsDefault = '{{ url('ajax/posts') }}';
-        var tablePosts;
+        var urlTiposPostDefault = '{{ url('ajax/tipospost') }}';
+        var tableTiposPost;
 
         function refreshTableBanners() {
-            tablePosts.ajax.url(urlPostsDefault);
-            tablePosts.draw();
+            tableTiposPost.ajax.url(urlTiposPostDefault);
+            tableTiposPost.draw();
         }
 
         $(document).ready(function () {
-            tablePosts = $('#tablePost').DataTable({
+            tableTiposPost = $('#tablePost').DataTable({
                 language: {
                     url: 'https://cdn.datatables.net/plug-ins/1.10.13/i18n/Portuguese-Brasil.json'
                 },
@@ -59,7 +61,7 @@
                 paging: true,
                 order: [0, 'desc'],
                 ajax: {
-                    url: urlPostsDefault,
+                    url: urlTiposPostDefault,
                     type: 'GET'
                 },
                 fixedColumns: true,
@@ -71,6 +73,12 @@
                     },
                     {
                         data: 'name'
+                    },
+                    {
+                        data: 'created_at'
+                    },
+                    {
+                        data: 'action'
                     }
                 ]
             });

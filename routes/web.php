@@ -18,3 +18,5 @@ Route::get('/', ['uses' => 'PostsController@index', 'as' => 'index']);
 Route::resource('/posts',PostsController::class);
 
 Route::get('ajax/{src}',['uses' => 'AjaxController@get']);
+
+Route::resource('/tipospost',TiposPostController::class);

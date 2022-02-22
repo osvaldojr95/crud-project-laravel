@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\TiposPost;
 use DataTables;
 
 class AjaxController extends Controller
@@ -15,12 +16,17 @@ class AjaxController extends Controller
         $source_file = null;
         $textNl2br = null;
         $result_view = null;
-
         switch ($source) {
             case "posts":
                 $date = "created_at";
                 $result = $this->getPosts();
                 $source_file = "posts.action";
+                break;
+
+            case "tipospost":
+                $date = "created_at";
+                $result = $this->getTiposPost();
+                $source_file = "tipospost.action";
                 break;
 
             default:
@@ -29,7 +35,7 @@ class AjaxController extends Controller
         }
 
         switch ($return_type) {
-            default:
+
             case 'datatable':
                 if (!$result) {
                     return '[]';
@@ -110,12 +116,20 @@ class AjaxController extends Controller
                 return response()->json($result);
             case 'view':
                 return view($result_view, compact('result'));
+
+            default:
+                echo "<h1>Formato inválido</h1>";
+                break;
         }
     }
 
     private function getPosts()
     {
         return Post::select("posts.*")->limit(100);
-        //return Post::all();
+    }
+
+    private function getTiposPost()
+    {
+        return TiposPost::select("tipospost.*")->limit(100);
     }
 }

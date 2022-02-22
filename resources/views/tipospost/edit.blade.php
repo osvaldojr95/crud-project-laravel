@@ -9,12 +9,13 @@
                     <div class="panel-title">
                         Lista de posts:
                         <ul class="panel-tools">
-                            <li><a class="btn btn-xs btn-edit" href="{{route('posts.index')}}"><i class="fa fa-plus"></i>Voltar</a></li>
+                            <li><a class="btn btn-xs btn-edit" href="{{route('tipospost.index')}}"><i
+                                            class="fa fa-plus"></i>Voltar</a></li>
                         </ul>
                     </div>
 
-                    {{Form::open(array('route' => 'posts.store', 'method' => 'POST'))}}
-                        @include('posts.form')
+                    {{Form::model($data, array('route' => ['tipospost.update', $data->id], 'method' => 'PUT'))}}
+                    @include('tipospost.form')
                     {{Form::close()}}
 
                     </table>

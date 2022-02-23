@@ -21,6 +21,11 @@
                 </div>
 
                 <div class="list">
+                    <h4>Tipo do post</h4>
+                    <div class="desc">{{$data->tipospost->name}}</div>
+                </div>
+
+                <div class="list">
                     <h4>Conteúdo</h4>
                     <div class="desc">{{$data->conteudo}}</div>
                 </div>

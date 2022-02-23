@@ -185,6 +185,8 @@ jQuery Library
 ================================================ -->
 <script type="text/javascript" src="{{asset('js/jquery.min.js')}}"></script>
 
+<script src="{{asset('js/select2/select2.min.js')}}"></script>
+
 <!-- ================================================
 Bootstrap Core JavaScript File
 ================================================ -->
@@ -195,79 +197,16 @@ Plugin.js - Some Specific JS codes for Plugin Settings
 ================================================ -->
 <script type="text/javascript" src="{{asset('js/plugins.js')}}"></script>
 
-<!-- ================================================
-Bootstrap Select
-================================================ -->
-<script type="text/javascript" src="{{asset('js/bootstrap-select/bootstrap-select.js')}}"></script>
-
-<!-- ================================================
-Bootstrap Toggle
-================================================ -->
-<script type="text/javascript" src="{{asset('js/bootstrap-toggle/bootstrap-toggle.min.js')}}"></script>
-
-<!-- ================================================
-Bootstrap WYSIHTML5
-================================================ -->
-<!-- main file -->
-<script type="text/javascript" src="{{asset('js/bootstrap-wysihtml5/wysihtml5-0.3.0.min.js')}}"></script>
-<!-- bootstrap file -->
-<script type="text/javascript" src="{{asset('js/bootstrap-wysihtml5/bootstrap-wysihtml5.js')}}"></script>
-
-<!-- ================================================
-Summernote
-================================================ -->
-<script type="text/javascript" src="{{asset('js/summernote/summernote.min.js')}}"></script>
-
-<!-- ================================================
-Easy Pie Chart
-================================================ -->
-<!-- main file -->
-<script type="text/javascript" src="{{asset('js/easypiechart/easypiechart.js')}}"></script>
-<!-- demo codes -->
-<script type="text/javascript" src="{{asset('js/easypiechart/easypiechart-plugin.js')}}"></script>
-
-<!-- ================================================
-Sparkline
-================================================ -->
-<!-- main file -->
-<script type="text/javascript" src="{{asset('js/sparkline/sparkline.js')}}"></script>
-<!-- demo codes -->
-<script type="text/javascript" src="{{asset('js/sparkline/sparkline-plugin.js')}}"></script>
-
-<!-- ================================================
+<!-- ===========================================
 Data Tables
 ================================================ -->
 <script src="{{asset('js/datatables/datatables.min.js')}}"></script>
-
-<!-- ================================================
-Sweet Alert
-================================================ -->
-<script src="{{asset('js/sweet-alert/sweet-alert.min.js')}}"></script>
-
-<!-- ================================================
-Kode Alert
-================================================ -->
-<script src="{{asset('js/kode-alert/main.js')}}"></script>
 
 <!-- ================================================
 jQuery UI
 ================================================ -->
 <script type="text/javascript" src="{{asset('js/jquery-ui/jquery-ui.min.js')}}"></script>
 
-<!-- ================================================
-Moment.js
-================================================ -->
-<script type="text/javascript" src="{{asset('js/moment/moment.min.js')}}"></script>
-
-<!-- ================================================
-Full Calendar
-================================================ -->
-<script type="text/javascript" src="{{asset('js/full-calendar/fullcalendar.js')}}"></script>
-
-<!-- ================================================
-Bootstrap Date Range Picker
-================================================ -->
-<script type="text/javascript" src="{{asset('js/date-range-picker/daterangepicker.js')}}"></script>
 
 @yield('script')
 <!-- ================================================

@@ -9,13 +9,12 @@
                     <div class="panel-title">
                         Lista de posts:
                         <ul class="panel-tools">
-                            <li><a class="btn btn-sm btn-edit" href="{{route('posts.index')}}"><i
-                                            class="fa fa-plus"></i>Voltar</a></li>
+                            <li><a class="btn btn-sm btn-edit" href="{{route('posts.index')}}"><i class="fa fa-plus"></i>Voltar</a></li>
                         </ul>
                     </div>
 
                     {{Form::model($data, array('route' => ['posts.update', $data->id], 'method' => 'PUT'))}}
-                    @include('posts.form')
+                        @include('posts.form')
                     {{Form::close()}}
 
                     </table>
@@ -36,4 +35,8 @@
     </div>
 
 
+@endsection
+
+@section('script')
+    <script src="{{asset('js/select2/form.js')}}"></script>
 @endsection

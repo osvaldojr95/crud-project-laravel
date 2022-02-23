@@ -11,18 +11,18 @@ class Post extends Model
 
     protected $fillable = [
         'name',
+        'id_tipospost',
         'conteudo'
     ];
 
     protected $guarded = [
         'id',
-        'id_tipospost',
         'created_at',
         'update_at'
     ];
 
-    public function tiposPost()
+    public function tipospost()
     {
-        return $this->hasOne('app\Models\TiposPost', 'id_tipospost', 'id');
+        return $this->hasOne(TiposPost::class ,'id', 'id_tipospost');
     }
 }

@@ -72,4 +72,6 @@ Plugin Css
 /* Full Calendar */
 @import url('plugin/fullcalendar/fullcalendar.css');
 
+/* Select2 */
+@import url('plugin/select2/select2.min.css');
 

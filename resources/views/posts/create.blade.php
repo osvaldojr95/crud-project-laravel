@@ -36,3 +36,7 @@
 
 
 @endsection
+
+@section('script')
+    <script src="{{asset('js/select2/form.js')}}"></script>
+@endsection

@@ -125,9 +125,10 @@ class AjaxController extends Controller
 
     private function getPosts()
     {
-        $data = Post::select(array("posts.*","tipospost.name as tipospost_name"))
-            ->leftJoin("tipospost",'posts.id_tipospost','=','tipospost.id');
+        $data = Post::select(array("posts.*", "tipospost.name as tipospost_name"))
+            ->leftJoin("tipospost", 'posts.id_tipospost', '=', 'tipospost.id');
         $data = $data->limit(100);
+
         return $data;
     }
 

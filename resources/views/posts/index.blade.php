@@ -13,6 +13,13 @@
                                             class="fa fa-plus"></i>Novo</a></li>
                         </ul>
                     </div>
+                    <div class="col-md-12 margin-b-10">
+                        <div class="col-md-6 float-r"
+                             style="display: flex; justify-content: flex-end; align-items: center">
+                            <label for="filter" class="margin-r-15">Filtrar tipo:</label>
+                            {{Form::select('id_tipospost_filter',$tipospost_list,old('id_tipospost_filter'), array('class' => 'form-control', 'id' => 'filter_id', 'placeholder' => 'Insira o tipo'))}}
+                        </div>
+                    </div>
                     <table class="table table-hover" id="tablePost">
                         <thead>
                         <tr>
@@ -41,15 +48,27 @@
 
 @section('script')
     <script type="text/javascript">
-        var urlPostsDefault = '{{ url('ajax/posts') }}';
-        var tablePosts;
+        let urlPostsDefault = '{{ url('ajax/posts')}}';
+        let tablePosts;
 
-        function refreshTableBanners() {
+        function refreshTablePosts() {
+            tablePosts.destroy();
             tablePosts.ajax.url(urlPostsDefault);
             tablePosts.draw();
+            attTable();
         }
 
         $(document).ready(function () {
+            $('#filter_id').select2();
+            attTable();
+
+            $('#filter_id').change(function() {
+                refreshTablePosts();
+            });
+        });
+
+
+        function attTable(){
             tablePosts = $('#tablePost').DataTable({
                 language: {
                     url: 'https://cdn.datatables.net/plug-ins/1.10.13/i18n/Portuguese-Brasil.json'
@@ -62,7 +81,16 @@
                 order: [0, 'desc'],
                 ajax: {
                     url: urlPostsDefault,
-                    type: 'GET'
+                    type: 'GET',
+                    data: {
+                        "tablename": "tipospost",
+                        "filter": {
+                            "tipospost.id": {
+                                "operator": "=",
+                                "value": $('#filter_id').val()
+                            }
+                        }
+                    }
                 },
                 fixedColumns: true,
                 columns: [
@@ -82,6 +110,6 @@
                     }
                 ]
             });
-        });
+        }
     </script>
 @endsection

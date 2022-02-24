@@ -38,5 +38,9 @@
 @endsection
 
 @section('script')
-    <script src="{{asset('js/select2/form.js')}}"></script>
+    <script>
+        $(document).ready(function () {
+            $('#tipospost-select').select2();
+        });
+    </script>
 @endsection

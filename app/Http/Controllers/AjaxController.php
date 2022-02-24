@@ -5,10 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Models\TiposPost;
 use DataTables;
+use Illuminate\Http\Request;
 
 class AjaxController extends Controller
 {
-    public function get($source)
+    public function get($source, Request $request)
     {
         $return_type = "datatable";
         $result = null;
@@ -16,10 +17,11 @@ class AjaxController extends Controller
         $source_file = null;
         $textNl2br = null;
         $result_view = null;
+
         switch ($source) {
             case "posts":
                 $date = "created_at";
-                $result = $this->getPosts();
+                $result = $this->getPosts($request);
                 $source_file = "posts.action";
                 break;
 
@@ -123,10 +125,33 @@ class AjaxController extends Controller
         }
     }
 
-    private function getPosts()
+    private function getPosts(Request $request)
     {
+        $tableName = $request['tablename'] ?? null;
+        $filter_request = $request['filter'] ?? [];
+        $whereFilter = [];
+
+        foreach ($filter_request as $key => $filter) {
+            $operator = (array_key_exists('operator', $filter) ? $filter['operator'] : null);
+            $value = (array_key_exists('value', $filter) ? $filter['value'] : null);
+
+            if ((strlen(trim($operator)) > 0) && strlen(trim($value)) > 0) {
+                switch ($key) {
+                    case 'tipospost.id':
+                        $whereFilter[] = [$tableName . '.id',$operator, $value];
+                        break;
+
+                    default:
+                        $key = 'posts.' . $key;
+                        break;
+                }
+            }
+        }
+
         $data = Post::select(array("posts.*", "tipospost.name as tipospost_name"))
-            ->leftJoin("tipospost", 'posts.id_tipospost', '=', 'tipospost.id');
+            ->leftJoin("tipospost", 'posts.id_tipospost', '=', 'tipospost.id')
+            ->where($whereFilter);
+
         $data = $data->limit(100);
 
         return $data;

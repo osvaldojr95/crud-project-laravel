@@ -6,13 +6,18 @@ use App\Models\Post;
 use App\Models\TiposPost;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use phpDocumentor\Reflection\Type;
+use phpDocumentor\Reflection\Types\Collection;
 
 class PostsController extends Controller
 {
     public function index()
     {
         $data = Post::all();
-        return view('posts.index', compact("data"));
+        //$tipospost_list = collect([null=>"Selecione o tipo do post"]);
+        //$tipospost_list = $tipospost_list->concat(TiposPost::all()->pluck("name","id"));
+        $tipospost_list = TiposPost::all()->pluck("name","id");
+        return view('posts.index', compact("data","tipospost_list"));
     }
 
     public function store(Request $request)
